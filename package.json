@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.0.4",
+    "@turf/clone": "^6.0.2",
     "@turf/simplify": "^5.1.5"
   }
 }
