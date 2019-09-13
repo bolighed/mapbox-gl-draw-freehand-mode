@@ -29,7 +29,7 @@ function geojsonFromDrawing() {
     console.log(Draw.getAll());
 }
 
-},{"@mapbox/mapbox-gl-draw":11,"@mapbox/mapbox-gl-draw-freehand-mode":"@mapbox/mapbox-gl-draw-freehand-mode","mapbox-gl":71}],2:[function(require,module,exports){
+},{"@mapbox/mapbox-gl-draw":11,"@mapbox/mapbox-gl-draw-freehand-mode":"@mapbox/mapbox-gl-draw-freehand-mode","mapbox-gl":72}],2:[function(require,module,exports){
 module.exports = Extent;
 
 function Extent(bbox) {
@@ -226,7 +226,7 @@ function ringArea(coords) {
 function rad(_) {
     return _ * Math.PI / 180;
 }
-},{"wgs84":75}],4:[function(require,module,exports){
+},{"wgs84":76}],4:[function(require,module,exports){
 module.exports = function flatten(list) {
     return _flatten(list);
 
@@ -262,7 +262,7 @@ module.exports = function(_) {
     return coordinates;
 };
 
-},{"./flatten":4,"@mapbox/geojson-normalize":7,"geojson-flatten":67}],6:[function(require,module,exports){
+},{"./flatten":4,"@mapbox/geojson-normalize":7,"geojson-flatten":68}],6:[function(require,module,exports){
 var geojsonCoords = require('@mapbox/geojson-coords'),
     traverse = require('traverse'),
     extent = require('@mapbox/extent');
@@ -311,7 +311,7 @@ function getExtent(_) {
     return ext;
 }
 
-},{"@mapbox/extent":2,"@mapbox/geojson-coords":5,"traverse":74}],7:[function(require,module,exports){
+},{"@mapbox/extent":2,"@mapbox/geojson-coords":5,"traverse":75}],7:[function(require,module,exports){
 module.exports = normalize;
 
 var types = {
@@ -403,7 +403,7 @@ function hint(str, options) {
 
 module.exports.hint = hint;
 
-},{"./object":9,"jsonlint-lines":69}],9:[function(require,module,exports){
+},{"./object":9,"jsonlint-lines":70}],9:[function(require,module,exports){
 var rightHandRule = require('./rhr');
 
 /**
@@ -1158,7 +1158,7 @@ module.exports = function (ctx, api) {
   return api;
 };
 
-},{"./constants":13,"./feature_types/line_string":16,"./feature_types/multi_feature":17,"./feature_types/point":18,"./feature_types/polygon":19,"./lib/features_at":27,"./lib/string_set":37,"./lib/string_sets_are_equal":38,"@mapbox/geojson-normalize":7,"@mapbox/geojsonhint":8,"hat":68,"lodash.isequal":70}],13:[function(require,module,exports){
+},{"./constants":13,"./feature_types/line_string":16,"./feature_types/multi_feature":17,"./feature_types/point":18,"./feature_types/polygon":19,"./lib/features_at":27,"./lib/string_set":37,"./lib/string_sets_are_equal":38,"@mapbox/geojson-normalize":7,"@mapbox/geojsonhint":8,"hat":69,"lodash.isequal":71}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -1607,7 +1607,7 @@ Feature.prototype.internal = function (mode) {
 
 module.exports = Feature;
 
-},{"../constants":13,"hat":68}],16:[function(require,module,exports){
+},{"../constants":13,"hat":69}],16:[function(require,module,exports){
 'use strict';
 
 var Feature = require('./feature');
@@ -1737,7 +1737,7 @@ MultiFeature.prototype.getFeatures = function () {
 
 module.exports = MultiFeature;
 
-},{"../constants":13,"./feature":15,"./line_string":16,"./point":18,"./polygon":19,"hat":68}],18:[function(require,module,exports){
+},{"../constants":13,"./feature":15,"./line_string":16,"./point":18,"./polygon":19,"hat":69}],18:[function(require,module,exports){
 'use strict';
 
 var Feature = require('./feature');
@@ -4414,7 +4414,7 @@ module.exports = function () {
   return withDefaults;
 };
 
-},{"./constants":13,"./lib/theme":39,"./modes":46,"xtend":76}],52:[function(require,module,exports){
+},{"./constants":13,"./lib/theme":39,"./modes":46,"xtend":77}],52:[function(require,module,exports){
 'use strict';
 
 var Constants = require('./constants');
@@ -5198,7 +5198,7 @@ module.exports = function (ctx) {
   };
 };
 
-},{"./constants":13,"xtend":76}],56:[function(require,module,exports){
+},{"./constants":13,"xtend":77}],56:[function(require,module,exports){
 'use strict';
 
 module.exports = Point;
@@ -6461,8 +6461,8 @@ exports.bearingToAngle = bearingToAngle;
 exports.convertDistance = convertDistance;
 
 },{}],59:[function(require,module,exports){
-'use strict';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
  * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
@@ -6476,26 +6476,26 @@ exports.convertDistance = convertDistance;
  * var lineCloned = turf.clone(line);
  */
 function clone(geojson) {
-    if (!geojson) throw new Error('geojson is required');
-
+    if (!geojson) {
+        throw new Error("geojson is required");
+    }
     switch (geojson.type) {
-    case 'Feature':
-        return cloneFeature(geojson);
-    case 'FeatureCollection':
-        return cloneFeatureCollection(geojson);
-    case 'Point':
-    case 'LineString':
-    case 'Polygon':
-    case 'MultiPoint':
-    case 'MultiLineString':
-    case 'MultiPolygon':
-    case 'GeometryCollection':
-        return cloneGeometry(geojson);
-    default:
-        throw new Error('unknown GeoJSON type');
+        case "Feature":
+            return cloneFeature(geojson);
+        case "FeatureCollection":
+            return cloneFeatureCollection(geojson);
+        case "Point":
+        case "LineString":
+        case "Polygon":
+        case "MultiPoint":
+        case "MultiLineString":
+        case "MultiPolygon":
+        case "GeometryCollection":
+            return cloneGeometry(geojson);
+        default:
+            throw new Error("unknown GeoJSON type");
     }
 }
-
 /**
  * Clone Feature
  *
@@ -6504,16 +6504,16 @@ function clone(geojson) {
  * @returns {Feature<any>} cloned Feature
  */
 function cloneFeature(geojson) {
-    var cloned = {type: 'Feature'};
+    var cloned = { type: "Feature" };
     // Preserve Foreign Members
     Object.keys(geojson).forEach(function (key) {
         switch (key) {
-        case 'type':
-        case 'properties':
-        case 'geometry':
-            return;
-        default:
-            cloned[key] = geojson[key];
+            case "type":
+            case "properties":
+            case "geometry":
+                return;
+            default:
+                cloned[key] = geojson[key];
         }
     });
     // Add properties & geometry last
@@ -6521,7 +6521,6 @@ function cloneFeature(geojson) {
     cloned.geometry = cloneGeometry(geojson.geometry);
     return cloned;
 }
-
 /**
  * Clone Properties
  *
@@ -6531,27 +6530,33 @@ function cloneFeature(geojson) {
  */
 function cloneProperties(properties) {
     var cloned = {};
-    if (!properties) return cloned;
+    if (!properties) {
+        return cloned;
+    }
     Object.keys(properties).forEach(function (key) {
         var value = properties[key];
-        if (typeof value === 'object') {
+        if (typeof value === "object") {
             if (value === null) {
                 // handle null
                 cloned[key] = null;
-            } else if (value.length) {
+            }
+            else if (Array.isArray(value)) {
                 // handle Array
                 cloned[key] = value.map(function (item) {
                     return item;
                 });
-            } else {
+            }
+            else {
                 // handle generic Object
                 cloned[key] = cloneProperties(value);
             }
-        } else cloned[key] = value;
+        }
+        else {
+            cloned[key] = value;
+        }
     });
     return cloned;
 }
-
 /**
  * Clone Feature Collection
  *
@@ -6560,16 +6565,15 @@ function cloneProperties(properties) {
  * @returns {FeatureCollection<any>} cloned Feature Collection
  */
 function cloneFeatureCollection(geojson) {
-    var cloned = {type: 'FeatureCollection'};
-
+    var cloned = { type: "FeatureCollection" };
     // Preserve Foreign Members
     Object.keys(geojson).forEach(function (key) {
         switch (key) {
-        case 'type':
-        case 'features':
-            return;
-        default:
-            cloned[key] = geojson[key];
+            case "type":
+            case "features":
+                return;
+            default:
+                cloned[key] = geojson[key];
         }
     });
     // Add features
@@ -6578,7 +6582,6 @@ function cloneFeatureCollection(geojson) {
     });
     return cloned;
 }
-
 /**
  * Clone Geometry
  *
@@ -6587,19 +6590,19 @@ function cloneFeatureCollection(geojson) {
  * @returns {Geometry<any>} cloned Geometry
  */
 function cloneGeometry(geometry) {
-    var geom = {type: geometry.type};
-    if (geometry.bbox) geom.bbox = geometry.bbox;
-
-    if (geometry.type === 'GeometryCollection') {
-        geom.geometries = geometry.geometries.map(function (geom) {
-            return cloneGeometry(geom);
+    var geom = { type: geometry.type };
+    if (geometry.bbox) {
+        geom.bbox = geometry.bbox;
+    }
+    if (geometry.type === "GeometryCollection") {
+        geom.geometries = geometry.geometries.map(function (g) {
+            return cloneGeometry(g);
         });
         return geom;
     }
     geom.coordinates = deepSlice(geometry.coordinates);
     return geom;
 }
-
 /**
  * Deep Slice coordinates
  *
@@ -6608,14 +6611,15 @@ function cloneGeometry(geometry) {
  * @returns {Coordinates} all coordinates sliced
  */
 function deepSlice(coords) {
-    if (typeof coords[0] !== 'object') { return coords.slice(); }
-    return coords.map(function (coord) {
+    var cloned = coords;
+    if (typeof cloned[0] !== "object") {
+        return cloned.slice();
+    }
+    return cloned.map(function (coord) {
         return deepSlice(coord);
     });
 }
-
-module.exports = clone;
-module.exports.default = clone;
+exports.default = clone;
 
 },{}],60:[function(require,module,exports){
 'use strict';
@@ -8250,11 +8254,168 @@ function checkValidity(ring) {
 module.exports = simplify;
 module.exports.default = simplify;
 
-},{"@turf/clean-coords":57,"@turf/clone":59,"@turf/helpers":65,"@turf/meta":62}],65:[function(require,module,exports){
-arguments[4][58][0].apply(exports,arguments)
-},{"dup":58}],66:[function(require,module,exports){
+},{"@turf/clean-coords":57,"@turf/clone":65,"@turf/helpers":66,"@turf/meta":62}],65:[function(require,module,exports){
+'use strict';
 
-},{}],67:[function(require,module,exports){
+/**
+ * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
+ * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
+ *
+ * @name clone
+ * @param {GeoJSON} geojson GeoJSON Object
+ * @returns {GeoJSON} cloned GeoJSON Object
+ * @example
+ * var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]], {color: 'red'});
+ *
+ * var lineCloned = turf.clone(line);
+ */
+function clone(geojson) {
+    if (!geojson) throw new Error('geojson is required');
+
+    switch (geojson.type) {
+    case 'Feature':
+        return cloneFeature(geojson);
+    case 'FeatureCollection':
+        return cloneFeatureCollection(geojson);
+    case 'Point':
+    case 'LineString':
+    case 'Polygon':
+    case 'MultiPoint':
+    case 'MultiLineString':
+    case 'MultiPolygon':
+    case 'GeometryCollection':
+        return cloneGeometry(geojson);
+    default:
+        throw new Error('unknown GeoJSON type');
+    }
+}
+
+/**
+ * Clone Feature
+ *
+ * @private
+ * @param {Feature<any>} geojson GeoJSON Feature
+ * @returns {Feature<any>} cloned Feature
+ */
+function cloneFeature(geojson) {
+    var cloned = {type: 'Feature'};
+    // Preserve Foreign Members
+    Object.keys(geojson).forEach(function (key) {
+        switch (key) {
+        case 'type':
+        case 'properties':
+        case 'geometry':
+            return;
+        default:
+            cloned[key] = geojson[key];
+        }
+    });
+    // Add properties & geometry last
+    cloned.properties = cloneProperties(geojson.properties);
+    cloned.geometry = cloneGeometry(geojson.geometry);
+    return cloned;
+}
+
+/**
+ * Clone Properties
+ *
+ * @private
+ * @param {Object} properties GeoJSON Properties
+ * @returns {Object} cloned Properties
+ */
+function cloneProperties(properties) {
+    var cloned = {};
+    if (!properties) return cloned;
+    Object.keys(properties).forEach(function (key) {
+        var value = properties[key];
+        if (typeof value === 'object') {
+            if (value === null) {
+                // handle null
+                cloned[key] = null;
+            } else if (value.length) {
+                // handle Array
+                cloned[key] = value.map(function (item) {
+                    return item;
+                });
+            } else {
+                // handle generic Object
+                cloned[key] = cloneProperties(value);
+            }
+        } else cloned[key] = value;
+    });
+    return cloned;
+}
+
+/**
+ * Clone Feature Collection
+ *
+ * @private
+ * @param {FeatureCollection<any>} geojson GeoJSON Feature Collection
+ * @returns {FeatureCollection<any>} cloned Feature Collection
+ */
+function cloneFeatureCollection(geojson) {
+    var cloned = {type: 'FeatureCollection'};
+
+    // Preserve Foreign Members
+    Object.keys(geojson).forEach(function (key) {
+        switch (key) {
+        case 'type':
+        case 'features':
+            return;
+        default:
+            cloned[key] = geojson[key];
+        }
+    });
+    // Add features
+    cloned.features = geojson.features.map(function (feature) {
+        return cloneFeature(feature);
+    });
+    return cloned;
+}
+
+/**
+ * Clone Geometry
+ *
+ * @private
+ * @param {Geometry<any>} geometry GeoJSON Geometry
+ * @returns {Geometry<any>} cloned Geometry
+ */
+function cloneGeometry(geometry) {
+    var geom = {type: geometry.type};
+    if (geometry.bbox) geom.bbox = geometry.bbox;
+
+    if (geometry.type === 'GeometryCollection') {
+        geom.geometries = geometry.geometries.map(function (geom) {
+            return cloneGeometry(geom);
+        });
+        return geom;
+    }
+    geom.coordinates = deepSlice(geometry.coordinates);
+    return geom;
+}
+
+/**
+ * Deep Slice coordinates
+ *
+ * @private
+ * @param {Coordinates} coords Coordinates
+ * @returns {Coordinates} all coordinates sliced
+ */
+function deepSlice(coords) {
+    if (typeof coords[0] !== 'object') { return coords.slice(); }
+    return coords.map(function (coord) {
+        return deepSlice(coord);
+    });
+}
+
+module.exports = clone;
+module.exports.default = clone;
+
+},{}],66:[function(require,module,exports){
+arguments[4][58][0].apply(exports,arguments)
+},{"dup":58}],67:[function(require,module,exports){
+
+},{}],68:[function(require,module,exports){
 function flatten(gj) {
     switch ((gj && gj.type) || null) {
         case 'FeatureCollection':
@@ -8296,7 +8457,7 @@ function flatten(gj) {
 
 module.exports = flatten;
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 var hat = module.exports = function (bits, base) {
     if (!base) base = 16;
     if (bits === undefined) bits = 128;
@@ -8360,7 +8521,7 @@ hat.rack = function (bits, base, expandBy) {
     return fn;
 };
 
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 (function (process){
 /* parser generated by jison 0.4.17 */
 /*
@@ -9061,7 +9222,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require('_process'))
-},{"_process":73,"fs":66,"path":72}],70:[function(require,module,exports){
+},{"_process":74,"fs":67,"path":73}],71:[function(require,module,exports){
 (function (global){
 /**
  * Lodash (Custom Build) <https://lodash.com/>
@@ -10913,7 +11074,7 @@ function stubFalse() {
 module.exports = isEqual;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 (function (global){
 'use strict';(function (f) {
     if (typeof exports === 'object' && typeof module !== 'undefined') {
@@ -35894,7 +36055,7 @@ module.exports = isEqual;
     }, {}, [73])(73);
 }));
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],72:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -36122,7 +36283,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":73}],73:[function(require,module,exports){
+},{"_process":74}],74:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -36308,7 +36469,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 var traverse = module.exports = function (obj) {
     return new Traverse(obj);
 };
@@ -36624,12 +36785,12 @@ var hasOwnProperty = Object.hasOwnProperty || function (obj, key) {
     return key in obj;
 };
 
-},{}],75:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 module.exports.RADIUS = 6378137;
 module.exports.FLATTENING = 1/298.257223563;
 module.exports.POLAR_RADIUS = 6356752.3142;
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -36650,7 +36811,7 @@ function extend() {
     return target
 }
 
-},{}],77:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -36676,92 +36837,93 @@ module.exports = {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-
-var _double_click_zoom = require('@mapbox/mapbox-gl-draw/src/lib/double_click_zoom');
-
-var _double_click_zoom2 = _interopRequireDefault(_double_click_zoom);
 
 var _constants = require('@mapbox/mapbox-gl-draw/src/constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
+var _double_click_zoom = require('@mapbox/mapbox-gl-draw/src/lib/double_click_zoom');
+
+var _double_click_zoom2 = _interopRequireDefault(_double_click_zoom);
+
 var _draw_polygon = require('@mapbox/mapbox-gl-draw/src/modes/draw_polygon');
 
 var _draw_polygon2 = _interopRequireDefault(_draw_polygon);
 
-var _drag_pan = require('../src/lib/drag_pan');
-
-var _drag_pan2 = _interopRequireDefault(_drag_pan);
-
 var _simplify = require('@turf/simplify');
 
 var _simplify2 = _interopRequireDefault(_simplify);
+
+var _clone = require('@turf/clone');
+
+var _clone2 = _interopRequireDefault(_clone);
+
+var _drag_pan = require('../src/lib/drag_pan');
+
+var _drag_pan2 = _interopRequireDefault(_drag_pan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FreeDraw = _draw_polygon2.default;
 
 FreeDraw.onSetup = function () {
-    var polygon = this.newFeature({
-        type: _constants2.default.geojsonTypes.FEATURE,
-        properties: {},
-        geometry: {
-            type: _constants2.default.geojsonTypes.POLYGON,
-            coordinates: [[]]
-        }
-    });
+  var polygon = this.newFeature({
+    type: _constants2.default.geojsonTypes.FEATURE,
+    properties: {},
+    geometry: { type: _constants2.default.geojsonTypes.POLYGON, coordinates: [[]] }
+  });
 
-    this.addFeature(polygon);
+  this.addFeature(polygon);
 
-    this.clearSelectedFeatures();
-    _double_click_zoom2.default.disable(this);
-    _drag_pan2.default.disable(this);
-    this.updateUIClasses({ mouse: _constants2.default.cursors.ADD });
-    this.activateUIButton(_constants2.default.types.POLYGON);
-    this.setActionableState({
-        trash: true
-    });
+  this.clearSelectedFeatures();
+  _double_click_zoom2.default.disable(this);
+  _drag_pan2.default.disable(this);
+  this.updateUIClasses({ mouse: _constants2.default.cursors.ADD });
+  this.activateUIButton(_constants2.default.types.POLYGON);
+  this.setActionableState({ trash: true });
 
-    return {
-        polygon: polygon,
-        currentVertexPosition: 0,
-        dragMoving: false
-    };
+  return { polygon: polygon, currentVertexPosition: 0, dragMoving: false };
 };
 
 FreeDraw.onDrag = FreeDraw.onTouchMove = function (state, e) {
-    state.dragMoving = true;
-    this.updateUIClasses({ mouse: _constants2.default.cursors.ADD });
-    state.polygon.updateCoordinate('0.' + state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
-    state.currentVertexPosition++;
-    state.polygon.updateCoordinate('0.' + state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  state.dragMoving = true;
+  this.updateUIClasses({ mouse: _constants2.default.cursors.ADD });
+  state.polygon.updateCoordinate('0.' + state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  state.currentVertexPosition++;
+  state.polygon.updateCoordinate('0.' + state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
 };
 
 FreeDraw.onMouseUp = function (state, e) {
-    if (state.dragMoving) {
-        var tolerance = 3 / ((this.map.getZoom() - 4) * 150) - 0.001; // https://www.desmos.com/calculator/b3zi8jqskw
-        (0, _simplify2.default)(state.polygon, {
-            mutate: true,
-            tolerance: tolerance,
-            highQuality: true
-        });
 
-        this.fireUpdate();
-        this.changeMode(_constants2.default.modes.SIMPLE_SELECT, { featureIds: [state.polygon.id] });
-    }
+  if (state.dragMoving) {
+    var polygon = (0, _clone2.default)(state.polygon),
+        tolerance = 3 / ((this.map.getZoom() - 4) * 150) - 0.001; // https://www.desmos.com/calculator/b3zi8jqskw
+
+    try {
+      (0, _simplify2.default)(polygon, { mutate: true, tolerance: tolerance, highQuality: true });
+      state.polygon = polygon;
+    } catch (_e) {}
+
+    this.fireUpdate();
+    this.changeMode(_constants2.default.modes.SIMPLE_SELECT, { featureIds: [state.polygon.id] });
+  }
+};
+
+FreeDraw.onTouchEnd = function (state, e) {
+  this.onMouseUp(state, e);
 };
 
 FreeDraw.fireUpdate = function () {
-    this.map.fire(_constants2.default.events.UPDATE, {
-        action: _constants2.default.updateActions.MOVE,
-        features: this.getSelected().map(function (f) {
-            return f.toGeoJSON();
-        })
-    });
+  this.map.fire(_constants2.default.events.UPDATE, {
+    action: _constants2.default.updateActions.MOVE,
+    features: this.getSelected().map(function (f) {
+      return f.toGeoJSON();
+    })
+  });
 };
 
 exports.default = FreeDraw;
 
-},{"../src/lib/drag_pan":77,"@mapbox/mapbox-gl-draw/src/constants":13,"@mapbox/mapbox-gl-draw/src/lib/double_click_zoom":25,"@mapbox/mapbox-gl-draw/src/modes/draw_polygon":45,"@turf/simplify":64}]},{},[1]);
+},{"../src/lib/drag_pan":78,"@mapbox/mapbox-gl-draw/src/constants":13,"@mapbox/mapbox-gl-draw/src/lib/double_click_zoom":25,"@mapbox/mapbox-gl-draw/src/modes/draw_polygon":45,"@turf/clone":59,"@turf/simplify":64}]},{},[1]);
