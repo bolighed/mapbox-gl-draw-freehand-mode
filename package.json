@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-draw-freehand-mode",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a free drawing plugin for mapbox-gl-draw",
   "main": "src/index.js",
   "scripts": {
